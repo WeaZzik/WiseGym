@@ -32,10 +32,13 @@ const muscleInfo = {
 	sternocleidomastoid:{ name: "Sternocleidomastoid", function: "...", location: "...", exercises: "..."},
 	rectus_abdominis:{ name: "Rectus Abdominis", function: "...", location: "...", exercises: "..."},
 };
+let selectedMuscle = null;
 
 function resetMuscles(){
 	document.querySelectorAll("svg path").forEach(muscle => {
-		muscle.setAttribute("fill", "black");
+		if (muscle !== selectedMuscle){
+			muscle.setAttribute("fill", "black");
+		}
 	});
 }
 
@@ -48,6 +51,7 @@ document.querySelectorAll("svg path").forEach(muscle => {
         resetMuscles();
 		let muscleId = this.id;
 		let musclePaths = getMusclePaths(muscleId);
+		selectedMuscle = this;
 		resetMuscles();
 		musclePaths.forEach(path => path.setAttribute("fill", "red"));
         if (muscleInfo[muscleId]){
@@ -64,14 +68,14 @@ document.querySelectorAll("svg path").forEach(muscle => {
         }
     });
 	muscle.addEventListener("mouseenter", function(){
-		let muscleId = this.id;
-		let musclePaths = getMusclePaths(muscleId);
-		musclePaths.forEach(path => path.setAttribute("fill","red"));
+		if (this !== selectedMuscle){
+			getMusclePaths(this.id).forEach(path => path.setAttribute("fill","red"));
+		}
 	});
 
 	muscle.addEventListener("mouseleave", function(){
-		let muscleId = this.id;
-		let musclePaths = getMusclePaths(muscleId);
-		musclePaths.forEach(path => path.setAttribute("fill","black"));
+		if (this !== selectedMuscle){
+			getMusclePaths(this.id).forEach(path => path.setAttribute("fill","black"));
+		}
 	});
 });
