@@ -112,7 +112,6 @@ svg path{
 	margin: 20px auto;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 	cursor: pointer;
-	transition: transform 0.2s ease-in-out;
 }
 
 #account-btn:hover{
