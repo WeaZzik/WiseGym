@@ -10,7 +10,7 @@ const muscleInfo = {
 	gastrocnemius:{ name: "Gastrocnemius", function: "Raises the heel (plantar flexion) and assists knee flexion", location: "Large calf muscle, visible at the back of the lower leg", involvement: "Jumping, running and walking uphill", exercises: "..."},
 	gluteus_maximus:{ name: "Gluteus Maximus", function: "Extends and rotates the hip, stabilizing the pelvis", location: "Largest buttock muscle, covering the back of the hip", involvement: "Squats, hip thrusts and running", exercises: "..."},
 	gluteus_medius:{ name: "Gluteus Medius", function: "Abducts (lifts outward) and stabilizes the hip", location: "Side of the hip, underneath the gluteus maximus", involvement: "Side lunges, hip abductions and balance exercises", exercises: "..."},
-	gracilis:{ name: "Gracilis", function: "Rotates and flexes the torso, supporting the core", location: "Beneath the external obliques, on the sides of the abdomen", involvement: "Side crunches, twisting and stability exercises", exercises: "..."},
+	gracilis:{ name: "Gracilis", function: "Adducts the thigh and flexes the knee", location: "Inner thigh, running from the pelvis to the tibia", involvement: "Hip adduction, squats and cross-body movements", exercises: "..."},
 	internal_oblique:{ name: "Internal Oblique", function: "Rotates and flexes the torso, supporting the core", location: "Beneath the external obliques, on the sides of the abdomen", involvement: "Side crunches, twisting and stability exercises", exercises: "..."},
 	latissimus_dorsi:{ name: "Latissimus Dorsi", function: "Pulls the arms downward and backward", location: "Large muscle covering the mid to lower back", involvement: "Pull-ups, rows and swimming strokes", exercises: "..."},
 	pectoris_major:{ name: "Pectoris Major", function: "Moves the arms across the chest and assists in pushing", location: "Large chest muscle, covering the upper torso", involvement: "Bench press, push-ups and dips", exercises: "..."},
@@ -30,7 +30,7 @@ const muscleInfo = {
 	triceps_brachii:{ name: "Triceps Brachii", function: "Extends the elbow", location: "Back of the upper arm", involvement: "Dips, push-ups and tricep extensions", exercises: "..."},
 	vastus_lateralis:{ name: "Vastus Lateralis", function: "Extends the knee", location: "Outer thigh, part of the quadriceps", involvement: "Squats, lunges and cycling", exercises: "..."},
 	vastus_medialis:{ name: "Vastus Medialis", function: "Extends the knee and stabilizes the kneecap", location: "Inner thigh, near the knee", involvement: "Leg presses, lunges and step-ups", exercises: "..."},
-	none:{ name: "< Please select a muscle >", function: "", location: "",involvement: "", exercises: ""},
+	none:{ name: "Please select a muscle", function: "", location: "",involvement: "", exercises: ""},
 };
 let selectedMuscle = null;
 
