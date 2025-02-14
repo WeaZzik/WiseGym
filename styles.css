@@ -7,22 +7,74 @@ body{
 	align-items: center;
 	font-family: Arial, sans-serif;
 }
-
-#nav-container{
+#left-container{
 	position: fixed;
 	left: 1%;
 	top: 50%;
 	transform: translateY(-50%);
 	width: 20%;
+	color: white;
+	height: 90vh;
+	display: flex;
+	padding: 20px;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#quiz-container{
+	position: fixed;
+	left: 0%;
+	top: 80%;
+	transform: translateY(-50%);
+	width: 100%;
 	background: #222;
 	color: white;
-	height: 80vh;
+	height: 20vh;
+	display: flex;
+	padding: 20px;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	flex-direction: column;
+}
+
+#quiz-container.active{
+	top: 50%;
+}
+
+#nav-container{
+	position: fixed;
+	left: 0%;
+	top: 34%;
+	transform: translateY(-50%);
+	width: 100%;
+	background: #222;
+	color: white;
+	height: 55vh;
 	display: flex;
 	padding: 20px;
 	flex-direction: column;
 	justify-content: center;
 	box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
 	border-radius: 10px;
+}
+
+#score-container{
+	display: none;
+	position: fixed;
+	left: 0%;
+	top: 30%;
+	transform: translateY(-50%);
+	width: 100%;
+	background: #222;
+	color: white;
+	height: 5vh;
+	padding: 20px;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+	border-radius: 15px;
 }
 
 #nav-container ul{
@@ -58,7 +110,7 @@ body{
 	justify-content: center;
 	width: 45%;
 	height: 90vh;
-	padding: 20px;
+	padding: 5px;
 }
 
 .svg-object{
@@ -96,14 +148,14 @@ svg path{
 
 #logo{
 	 display: block;
-	 width: 80%;
-	 max-width: 80%;
+	 width: 30%;
+	 max-width: 30%;
 	 margin: 0 auto 20px auto;
 }
 
 #account-btn{
-	width: 60px;
-	height: 60px;
+	width: 50px;
+	height: 50px;
 	border-radius: 50%;
 	background-color: #ffffff;
 	display: flex;
@@ -119,7 +171,93 @@ svg path{
 }
 
 #account-btn img{
-	width: 40px;
-	height: 40px;
+	width: 30px;
+	height: 30px;
 	border-radius: 50%;
+}
+ 
+#start-quiz{
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+	width: 40%;
+	height: 30%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+ 
+#start-quiz:hover{
+    background-color: #0056b3;
+}
+ 
+/* Hide left and right divs smoothly */
+.hidden{
+    opacity: 0;
+    transition: opacity 1s ease-out;
+    pointer-events: none;
+}
+
+.visible{
+    opacity: 1;
+    transition: opacity 1s ease-out;
+    pointer-events: auto;
+}
+
+#quiz-text{
+	display: none;
+	font-size: 20px;
+	margin: 0%;
+}
+
+#quiz-muscle{
+	display: none;
+	font-size: 25px;
+}
+
+#quit-quiz{
+    font-size: 16px;
+    background-color: #007bff;
+	margin-right: 30px;
+	width: 30%;
+	height: 100%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+ 
+#quit-quiz:hover{
+    background-color: #0056b3;
+}
+
+#score-text{
+	font-size: 20px;
+}
+
+#feedback-correct{
+	position: fixed;
+	top: 70%;
+	left: 13%;
+	transform: translate(-50%, -50%);
+	font-size: 40px;
+	font-weight: bold;
+	color: green;
+	transition: opacity 0.5s ease-in-out;
+	pointer-events: none;
+}
+
+#feedback-wrong{
+	position: fixed;
+	top: 70%;
+	left: 13%;
+	transform: translate(-50%, -50%);
+	font-size: 40px;
+	font-weight: bold;
+	color: red;
+	transition: opacity 0.5s ease-in-out;
+	pointer-events: none;
 }
