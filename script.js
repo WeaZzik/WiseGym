@@ -33,7 +33,7 @@ const muscleInfo = {
 	none:{ name: "Please select a muscle", function: "", location: "",involvement: "", exercises: ""},
 };
 let selectedMuscle = null;
-
+let currentScore = 0;
 function resetMuscles(){
 	document.querySelectorAll("svg path").forEach(muscle => {
 		if (muscle !== selectedMuscle){
@@ -77,6 +77,114 @@ document.querySelectorAll("svg path").forEach(muscle => {
 	muscle.addEventListener("mouseleave", function(){
 		if (this !== selectedMuscle){
 			getMusclePaths(this.id).forEach(path => path.setAttribute("fill","black"));
+		}
+	});
+});
+
+
+const muscles = [
+    "adductor_longus", "biceps_brachii", "biceps_femoris", "brachialis", "deltoid",
+    "extensors", "external_oblique", "flexors", "gastrocnemius", "gluteus_maximus",
+    "gluteus_medius", "gracilis", "internal_oblique", "latissimus_dorsi", "pectoris_major",
+    "peroneus_longus", "rectus_abdominis", "rectus_femoris", "rhomboid", "sartorius",
+    "semimembranosus", "semitendinosus", "serratus_anterior", "soleus", "sternocleidomastoid",
+    "teres_major", "tibialis_anterior", "trapezius", "triceps_brachii", "vastus_lateralis",
+    "vastus_medialis"
+];
+ 
+// Elements
+const startQuizBtn = document.getElementById("start-quiz");
+const quitQuizBtn = document.getElementById("quit-quiz");
+const quizArea = document.getElementById("quiz-area");
+const quizMuscle = document.getElementById("quiz-muscle");
+const quizText = document.getElementById("quiz-text");
+const scoreContainer = document.getElementById("score-container");
+const quizContainer = document.getElementById("quiz-container");
+const scoreText = document.getElementById("score-text");
+ 
+startQuizBtn.addEventListener("click", function (){
+    document.getElementById("nav-container").classList.add("hidden");
+    document.getElementById("info-container").classList.add("hidden");
+	document.querySelectorAll("svg path").forEach(muscle => muscle.setAttribute("fill", "black"));
+	startQuizBtn.style.display = "none";
+	document.getElementById("quiz-container").classList.add("hidden");
+	document.getElementById("score-container").classList.add("hidden");
+	let currentMuscle = "";
+	let currentScore = 0;
+	setTimeout(() => {
+		scoreContainer.style.display = "flex";
+		document.getElementById("quiz-container").classList.add("active");
+		document.getElementById("quiz-container").classList.add("visible");
+		document.getElementById("score-container").classList.add("visible");
+		startQuiz();
+	}, 1000);
+});
+
+quitQuizBtn.addEventListener("click", function (){
+	document.getElementById("quiz-container").classList.remove("visible");
+	document.getElementById("score-container").classList.remove("visible");
+	setTimeout(() => {
+		document.getElementById("nav-container").classList.add("visible");
+		document.getElementById("info-container").classList.add("visible");
+		document.getElementById("quiz-container").classList.remove("active");
+		startQuizBtn.style.display = "block";
+		quizText.style.display = "none";
+		quizMuscle.style.display = "none";
+		document.getElementById("quiz-container").classList.add("visible");
+		document.getElementById("info-container").classList.remove("hidden");
+		document.getElementById("nav-container").classList.remove("hidden");
+		document.getElementById("quiz-container").classList.remove("hidden");
+		document.getElementById("info-container").classList.remove("visible");
+		document.getElementById("nav-container").classList.remove("visible");
+		document.getElementById("quiz-container").classList.remove("visible");
+		location.reload();
+	}, 1000);
+});
+
+function startQuiz(){
+	quizText.style.display = "block";
+	quizMuscle.style.display = "block";
+	currentMuscle = muscles[Math.floor(Math.random() * muscles.length)];
+	quizMuscle.innerHTML = `<strong>${currentMuscle.replace("_", " ")}</strong>`;
+	scoreText.innerHTML = `Score : ${currentScore}</strong>`;
+}
+
+document.querySelectorAll("svg path").forEach(muscle => {
+	muscle.addEventListener("click", function (){
+		let clickedMuscle = this.id;
+		if (clickedMuscle === currentMuscle){
+			document.querySelectorAll("svg path").forEach(muscle => muscle.setAttribute("fill", "black"));
+			currentScore = currentScore + 1;
+			document.getElementById("feedback-correct").classList.add("visible");
+			scoreText.innerHTML = `Score : ${currentScore}</strong>`;
+			setTimeout(() => {
+				document.getElementById("feedback-correct").classList.remove("visible");
+			}, 1000);
+			startQuiz();
+		}else{
+			document.querySelectorAll("svg path").forEach(muscle => muscle.setAttribute("fill", "black"));
+			document.getElementById("feedback-wrong").classList.add("visible");
+			document.getElementById("quiz-container").classList.remove("visible");
+			document.getElementById("score-container").classList.remove("visible");
+			setTimeout(() => {
+				document.getElementById("feedback-wrong").classList.remove("visible");
+			}, 1000);
+			setTimeout(() => {
+				document.getElementById("nav-container").classList.add("visible");
+				document.getElementById("info-container").classList.add("visible");
+				document.getElementById("quiz-container").classList.remove("active");
+				startQuizBtn.style.display = "block";
+				quizText.style.display = "none";
+				quizMuscle.style.display = "none";
+				document.getElementById("quiz-container").classList.add("visible");
+				document.getElementById("info-container").classList.remove("hidden");
+				document.getElementById("nav-container").classList.remove("hidden");
+				document.getElementById("quiz-container").classList.remove("hidden");
+				document.getElementById("info-container").classList.remove("visible");
+				document.getElementById("nav-container").classList.remove("visible");
+				document.getElementById("quiz-container").classList.remove("visible");
+				location.reload();
+			}, 2000);
 		}
 	});
 });
